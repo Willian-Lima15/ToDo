@@ -1,4 +1,4 @@
-<h1>{{title}}</h1>
+<h1 class="title">{{title}}</h1>
 <ul>
   <p *ngIf="todo.length == 0"><small>Sem tarefas</small></p>
   <li *ngFor="let ToDo of todo">{{ ToDo.title }} |
@@ -14,7 +14,7 @@
     <input type="text" placeholder="Digite uma nova tarefa" maxlength="60" formControlName="title">
     <small *ngIf="form.controls.title.invalid && !form.controls.title.pristine">Este campo deve conter entre 3 a 60
       digitos</small>
-    <button [disabled]="form.invalid" (click)="add()">Salvar</button>
+    <button class="button" [disabled]="form.invalid" (click)="add()">Salvar</button>
   </fieldset>
 </form>
 <button (click)="alterarTexto()">Click Aqui!</button>
