@@ -1,20 +1,30 @@
-<h1 class="title">{{title}}</h1>
-<ul>
+<h1 class="title animated jackInTheBox">{{title}}</h1>
+<ul class="animated flipInX" *ngIf="mode=='list'">
   <p *ngIf="todo.length == 0"><small>Sem tarefas</small></p>
   <li *ngFor="let ToDo of todo">{{ ToDo.title }} |
     <button *ngIf="!ToDo.done" (click)="markAsDone(ToDo)">Concluir</button> |
-    <button *ngIf="ToDo.done" (click)="markAsuDoin(ToDo)">Refazer</button>
+    <button *ngIf="ToDo.done" (click)="markAsuDoin(ToDo)">Refazer</button> |
     <button (click)="remove(ToDo)">Remover</button>
   </li>
 </ul>
 
-<form [formGroup]="form">
-  <fieldset>
-    <label>Tarefa: </label>
-    <input type="text" placeholder="Digite uma nova tarefa" maxlength="60" formControlName="title">
-    <small *ngIf="form.controls.title.invalid && !form.controls.title.pristine">Este campo deve conter entre 3 a 60
-      digitos</small>
-    <button class="button" [disabled]="form.invalid" (click)="add()">Salvar</button>
-  </fieldset>
-</form>
-<button (click)="alterarTexto()">Click Aqui!</button>
+<div id="modal" *ngIf="mode=='add'" class="animated flipInX">
+  <form [formGroup]="form">
+    <fieldset>
+      <label>Tarefa: </label>
+      <input type="text" placeholder="Digite uma nova tarefa" maxlength="60" formControlName="title">
+      <small *ngIf="form.controls.title.invalid && !form.controls.title.pristine">Este campo deve conter entre 3 a 60
+        digitos</small>
+      <button class="button" [disabled]="form.invalid" (click)="add()">Salvar</button>
+    </fieldset>
+  </form>
+</div>
+<button class="add-button animated fadeInUp button" (click)="changeMode('add')" *ngIf="mode=='list'">
+  <i class="fas fa-plus-circle"></i>
+  NOVA TAREFA
+</button>
+<button class="add-button animated fadeInUp button" (click)="changeMode('list')" *ngIf="mode=='add'">
+  <i class="fas fa-times"></i>
+  CANCELAR
+</button>
+<!--<button (click)="alterarTexto()">Click Aqui!</button>-->

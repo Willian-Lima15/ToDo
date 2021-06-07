@@ -9,6 +9,7 @@ import { Todo } from 'src/Models/Models.ToDo';
 })
 //Corpo da minha form
 export class AppComponent {
+  public mode = 'list';
   public todo: Todo[] = [];
   public title: string = ('Minhas Tarefas');
   public form: FormGroup;
@@ -77,6 +78,10 @@ export class AppComponent {
     } else {
       this.todo = []
     }
+  }
+
+  changeMode(mode: string) {
+    this.mode = mode;
   }
 
   alterarTexto() {
