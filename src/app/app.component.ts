@@ -68,6 +68,7 @@ export class AppComponent {
   save() {
     const dados = JSON.stringify(this.todo);
     localStorage.setItem('todo', dados);
+    this.mode = 'list';
   }
 
   //Carrega os dados do localStorage e exibi na pagina
